@@ -60,6 +60,10 @@ def run_eigenfaces_analysis():
     eigenfaces = pca.components_.T
     eigenface_titles = [f"eigenface {i}" for i in range(eigenfaces.shape[0])]
     plot_gallery(eigenfaces, eigenface_titles, h, w)
+    
+    # 保存特征脸图像
+    plt.savefig('eigenfaces_gallery.png')
+    logging.info("特征脸图像已保存到 eigenfaces_gallery.png")
 
     # 4. 将原始人脸投影到PCA子空间，并重建人脸
     X_transformed = pca.transform(X)
@@ -87,7 +91,10 @@ def run_eigenfaces_analysis():
         axes[i, 1].set_yticks(())
 
     plt.tight_layout(rect=[0, 0, 1, 0.96])
-    plt.show()
+    
+    # 保存重建后的人脸图像
+    plt.savefig('reconstructed_faces.png')
+    logging.info("重建人脸图像已保存到 reconstructed_faces.png")
 
 
 if __name__ == '__main__':
